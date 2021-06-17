@@ -17,3 +17,6 @@ variable "cluster_flavor" {
   type    = string
   default = "t3.large"
 }
+variable "access_ip" {
+  type = string
+}

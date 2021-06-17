@@ -31,7 +31,7 @@ resource "aws_key_pair" "cluster-key" {
 // Save the private key to filesystem
 resource "local_file" "aws_private_pem" {
   file_permission = "600"
-  filename        = format("%s/%s", path.module, "aws_private.pem")
+  filename        = format("%s/%s", path.module, "../aws_private.pem")
   content         = tls_private_key.k0sctl.private_key_pem
 }
 
@@ -80,6 +80,6 @@ resource "aws_instance" "cluster-controller" {
   tags = {
     Role                                    = "controller"
     Name                                    = "controller-${random_id.controller_node_id[count.index].dec}"
-    "kubernetes.io/cluster/your_cluster_id" = "owned"
+    "kubernetes.io/cluster/k0s-cluster"     = "owned"
   }
 }
